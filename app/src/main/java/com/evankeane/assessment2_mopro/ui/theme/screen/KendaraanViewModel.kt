@@ -21,4 +21,8 @@ class MainViewModel : ViewModel() {
         )
 
     )
+
+    fun getCatatan(id:Long):Kendaraan?{
+        return data.find{it.id==id}
+    }
 }
