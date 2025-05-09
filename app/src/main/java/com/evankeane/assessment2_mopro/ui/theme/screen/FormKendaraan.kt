@@ -2,6 +2,7 @@ package com.evankeane.assessment2_mopro.ui.theme.screen
 
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -81,13 +82,24 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
 
                 },
                 actions = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = {
+                        if (merk == "" || warna == "" || tahun == "" ){
+                            Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
+                            return@IconButton
+                        }
+                        if (id == null){
+                            viewModel.insert(merk, warna, tahun)
+                        }else{
+                            viewModel.update(id, merk, warna, tahun)
+                        }
+                        navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
+
 
                 }
             )
