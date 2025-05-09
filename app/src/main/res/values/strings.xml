@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Aplikasi Manajemen Kendaraan</string>
-    <string name="lihat_mobil">Lihat Mobil</string>
-    <string name="lihat_motor">Lihat Motor</string>
-    <string name="pembuka_aplikasi">Selamat Datang di Aplikasi Manajemen Kendaraan </string>
+    <string name="app_name">Aplikasi Manajemen Mobil</string>
+    <string name="list_kosong">Belum Menambahkan Mobil</string>
+    <string name="x_diklik">%1$s diklik!</string>
+    <string name="tambah_kendaraan">Tambah kendaraan</string>
+    <string name="belum_bisa">Belum bisa tambah kendaraan</string>
 </resources>
