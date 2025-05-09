@@ -63,7 +63,7 @@ fun MainScreen(navController: NavHostController) {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate(Screen.FormTambah)
+                    navController.navigate(Screen.FormTambah.route)
                 }
             ) {
                 Icon(
