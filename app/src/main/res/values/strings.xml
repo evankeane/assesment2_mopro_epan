@@ -3,6 +3,7 @@
     <string name="list_kosong">Belum Menambahkan Mobil</string>
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_kendaraan">Tambah kendaraan</string>
+    <string name="edit_kendaraan">Edit Kendaraan</string>
     <string name="belum_bisa">Belum bisa tambah kendaraan</string>
     <string name="merk">Merk</string>
     <string name="warna">Warna</string>

@@ -15,8 +15,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-
-
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -31,6 +29,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -41,19 +40,22 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.R
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
+import com.evankeane.assessment2_mopro.util.ViewModelFactory
 
 const val KEY_ID_KENDARAAN = "idKendaraan"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormKendaraan(navController: NavHostController,id:Long?=null) {
-    val viewModel:MainViewModel= viewModel()
+    val context = LocalContext.current
+    val factory = ViewModelFactory(context)
+    val viewModel: KendaraanViewModel = viewModel(factory = factory)
     var merk by remember { mutableStateOf("") }
     var warna by remember { mutableStateOf("") }
     var tahun by remember { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
         if (id==null) return@LaunchedEffect
-        val data = viewModel.getCatatan(id) ?: return@LaunchedEffect
+        val data = viewModel.getKendaraan(id) ?: return@LaunchedEffect
         merk =data.merk
         warna =data.warna
         tahun = data.tahun
@@ -71,12 +73,13 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
                     }
                 },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_kendaraan))
+                    if (id==null)
+                        Text(text = stringResource(id = R.string.tambah_kendaraan))
+
+                    else
+                        Text(text = stringResource(R.string.edit_kendaraan))
+
                 },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
-                ),
                 actions = {
                     IconButton(onClick = {navController.popBackStack()}) {
                         Icon(

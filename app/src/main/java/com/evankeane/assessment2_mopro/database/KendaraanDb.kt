@@ -9,7 +9,7 @@ import com.evankeane.assessment2_mopro.model.Kendaraan
 
 @Database(entities = [Kendaraan::class], version = 1, exportSchema = false)
 abstract class KendaraanDb : RoomDatabase() {
-    abstract val kendaraanDao: KendaraanDao
+    abstract val dao: KendaraanDao
 
     companion object {
         @Volatile

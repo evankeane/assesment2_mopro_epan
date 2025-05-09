@@ -27,6 +27,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -39,9 +41,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.R
+import com.evankeane.assessment2_mopro.database.KendaraanDb
 import com.evankeane.assessment2_mopro.model.Kendaraan
 import com.evankeane.assessment2_mopro.navigation.Screen
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
+import com.evankeane.assessment2_mopro.util.ViewModelFactory
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -80,9 +84,11 @@ fun MainScreen(navController: NavHostController) {
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier,  navController:NavHostController){
-    val viewModel: MainViewModel = viewModel()
-    val data = viewModel.data
     val context = LocalContext.current
+    val factory = ViewModelFactory(context)
+    val viewModel: MainViewModel = viewModel(factory = factory)
+    val data by viewModel.data.collectAsState()
+
 
     if (data.isEmpty()){
         Image(
