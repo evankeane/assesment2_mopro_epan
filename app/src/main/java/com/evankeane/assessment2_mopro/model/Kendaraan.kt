@@ -9,5 +9,6 @@ data class Kendaraan(
     val id : Long = 0L,
     val merk : String,
     val warna: String,
-    val tahun: String
+    val tahun: String,
+    val createdAt: Long = System.currentTimeMillis()
 )

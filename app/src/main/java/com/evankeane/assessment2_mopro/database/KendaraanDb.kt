@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.evankeane.assessment2_mopro.model.Kendaraan
+import com.evankeane.assessment2_mopro.model.RecycleKendaraan
 
 
-@Database(entities = [Kendaraan::class], version = 1, exportSchema = false)
+@Database(entities = [Kendaraan::class, RecycleKendaraan::class], version = 2)
+
 abstract class KendaraanDb : RoomDatabase() {
     abstract val dao: KendaraanDao
-    abstract fun recycleKendaraanDao(): RecycleKendaraanDao
+    abstract val recycleDao: RecycleDao
+
 
     companion object {
         @Volatile
@@ -22,7 +25,8 @@ abstract class KendaraanDb : RoomDatabase() {
                     context.applicationContext,
                     KendaraanDb::class.java,
                     "kendaraan_db"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

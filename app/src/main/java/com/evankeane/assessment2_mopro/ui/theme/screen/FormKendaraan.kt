@@ -14,17 +14,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.MoreVert
+
 import androidx.compose.material.icons.outlined.Check
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -38,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -130,7 +130,7 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
                 onDismissRequest = {showDialog = false}
             ){
                 showDialog = false
-                viewModel.delete(id)
+                viewModel.softDeleteBarang(id)
                 navController.popBackStack()
             }
         }
@@ -178,6 +178,7 @@ fun FormKendaraan1(
             label = { Text(text = stringResource(R.string.tahun)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
                 capitalization = KeyboardCapitalization.Words,
                 imeAction = ImeAction.Next
             ),
