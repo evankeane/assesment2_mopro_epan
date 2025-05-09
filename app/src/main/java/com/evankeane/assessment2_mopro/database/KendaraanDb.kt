@@ -10,6 +10,7 @@ import com.evankeane.assessment2_mopro.model.Kendaraan
 @Database(entities = [Kendaraan::class], version = 1, exportSchema = false)
 abstract class KendaraanDb : RoomDatabase() {
     abstract val dao: KendaraanDao
+    abstract fun recycleKendaraanDao(): RecycleKendaraanDao
 
     companion object {
         @Volatile
