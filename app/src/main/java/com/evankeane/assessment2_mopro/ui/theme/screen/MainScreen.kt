@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,9 +16,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -31,7 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -102,43 +103,56 @@ fun ScreenContent(modifier: Modifier = Modifier){
             contentPadding = PaddingValues(bottom = 84.dp)
         ) {
             items(data) {
-                ListItem(kendaraan = it){
-                    val pesan = context.getString(R.string.x_diklik,it.merk)
-                    Toast.makeText(context,pesan, Toast.LENGTH_SHORT).show()
+                ListItem(kendaraan = it) {
+                    val pesan = context.getString(R.string.x_diklik, it.merk)
+                    Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show()
                 }
-                HorizontalDivider()
             }
         }
+
     }
         }
-
 
 
 @Composable
-fun ListItem(kendaraan: Kendaraan, onClick:() -> Unit){
-    Column(
-        modifier = Modifier.fillMaxWidth().clickable { onClick() }.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+fun ListItem(kendaraan: Kendaraan, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 6.dp)
+            .clickable { onClick() },
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Text(
-            text = kendaraan.merk,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = kendaraan.warna,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(
-            text = kendaraan.tahun,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = kendaraan.merk,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Warna: ${kendaraan.warna}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    text = "Tahun: ${kendaraan.tahun}",
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
 
+        }
     }
 }
+
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
