@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.DropdownMenu
@@ -114,7 +115,7 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
             )
         }
     ) { padding ->
-        FormCatatan(
+        FormKendaraan1(
             merk = merk,
             onMerkChange = {merk = it},
             warna = warna,
@@ -128,7 +129,7 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
 }
 
 @Composable
-fun FormCatatan(
+fun FormKendaraan1(
     merk : String, onMerkChange: (String) ->Unit,
     warna : String, onWarnaChange: (String) -> Unit,
     tahun : String, onTahunChange: (String) -> Unit,
@@ -177,32 +178,17 @@ fun FormCatatan(
     }
 }
 
-
 @Composable
 fun DeleteAction(delete: () -> Unit) {
-    var expanded by remember { mutableStateOf(false) }
-    IconButton(onClick = { expanded = true }) {
+    IconButton(onClick = { delete() }) {
         Icon(
-            imageVector = Icons.Filled.MoreVert,
-            contentDescription = stringResource(R.string.lainnya),
-            tint = MaterialTheme.colorScheme.primary
+            imageVector = Icons.Default.Delete,
+            contentDescription = stringResource(R.string.hapus),
+            tint = MaterialTheme.colorScheme.error
         )
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            DropdownMenuItem(
-                text = {
-                    Text(text = stringResource(id = R.string.hapus))
-                },
-                onClick = {
-                    expanded = false
-                    delete()
-                }
-            )
-        }
     }
 }
+
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)

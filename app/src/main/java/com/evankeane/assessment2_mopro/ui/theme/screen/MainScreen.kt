@@ -151,7 +151,6 @@ fun ScreenContent(showList: Boolean,modifier: Modifier = Modifier,  navControlle
                     ListItem(kendaraan = it) {
                         navController.navigate(Screen.FormUbah.withId(it.id))
                     }
-                    HorizontalDivider()
                 }
 
             }
@@ -208,6 +207,7 @@ fun ListItem(kendaraan: Kendaraan, onClick: () -> Unit) {
                     text = "Tahun: ${kendaraan.tahun}",
                     style = MaterialTheme.typography.bodySmall
                 )
+
             }
 
         }
@@ -243,6 +243,8 @@ fun GridItem(kendaraan: Kendaraan, onClick: () -> Unit){
         }
     }
 }
+
+
 
 
 @Preview(showBackground = true)
