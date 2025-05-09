@@ -11,5 +11,7 @@
     <string name="invalid">Merk, Warna, dan Tahun Kendaraan tidak boleh kosong</string>
     <string name="kembali">Kembali</string>
     <string name="simpan">Simpan</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus Kendaraan</string>
 
 </resources>
