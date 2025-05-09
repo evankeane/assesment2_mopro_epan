@@ -40,6 +40,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.R
 import com.evankeane.assessment2_mopro.model.Kendaraan
+import com.evankeane.assessment2_mopro.navigation.Screen
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
 
 
@@ -62,7 +63,7 @@ fun MainScreen(navController: NavHostController) {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    navController.navigate("form")
+                    navController.navigate(Screen.FormTambah)
                 }
             ) {
                 Icon(
@@ -73,12 +74,12 @@ fun MainScreen(navController: NavHostController) {
             }
         }
     ){ padding ->
-        ScreenContent(Modifier.padding(padding))
+        ScreenContent(Modifier.padding(padding),navController)
     }
 }
 
 @Composable
-fun ScreenContent(modifier: Modifier = Modifier){
+fun ScreenContent(modifier: Modifier = Modifier,  navController:NavHostController){
     val viewModel: MainViewModel = viewModel()
     val data = viewModel.data
     val context = LocalContext.current
@@ -106,8 +107,7 @@ fun ScreenContent(modifier: Modifier = Modifier){
         ) {
             items(data) {
                 ListItem(kendaraan = it) {
-                    val pesan = context.getString(R.string.x_diklik, it.merk)
-                    Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show()
+                    navController.navigate(Screen.FormUbah.withid(it.id))
                 }
             }
         }

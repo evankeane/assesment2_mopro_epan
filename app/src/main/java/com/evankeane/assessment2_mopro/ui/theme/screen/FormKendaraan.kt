@@ -40,10 +40,11 @@ import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.R
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
 
-
+const val KEY_ID_KENDARAAN = "idKendaraan"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FormKendaraan(navController: NavHostController) {
+fun FormKendaraan(navController: NavHostController,id:Long?=null) {
+
     var merk by remember { mutableStateOf("") }
     var warna by remember { mutableStateOf("") }
     var tahun by remember { mutableStateOf("") }
