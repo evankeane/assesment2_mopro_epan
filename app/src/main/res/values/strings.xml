@@ -13,5 +13,8 @@
     <string name="simpan">Simpan</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus Kendaraan</string>
+    <string name="pesan_hapus">Hapus Catatan ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 
 </resources>

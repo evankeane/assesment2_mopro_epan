@@ -164,7 +164,7 @@ fun ListItem(kendaraan: Kendaraan, onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
-fun DialogPreview(){
+fun MainScreen(){
     Assessment2_MoproTheme  {
         MainScreen(rememberNavController())
     }
