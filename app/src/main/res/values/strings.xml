@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Assessment2_Mopro</string>
+    <string name="app_name">Aplikasi Manajemen Kendaraan</string>
+    <string name="lihat_mobil">Lihat Mobil</string>
+    <string name="lihat_motor">Lihat Motor</string>
+    <string name="pembuka_aplikasi">Selamat Datang di Aplikasi Manajemen Kendaraan </string>
 </resources>
