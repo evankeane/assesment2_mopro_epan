@@ -4,4 +4,10 @@
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_kendaraan">Tambah kendaraan</string>
     <string name="belum_bisa">Belum bisa tambah kendaraan</string>
+    <string name="merk">Merk</string>
+    <string name="warna">Warna</string>
+    <string name="tahun">Tahun</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
+
 </resources>

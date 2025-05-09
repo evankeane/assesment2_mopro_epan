@@ -36,6 +36,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.R
 import com.evankeane.assessment2_mopro.model.Kendaraan
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
@@ -43,8 +45,8 @@ import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
-    val context = LocalContext.current
+fun MainScreen(navController: NavHostController) {
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,7 +62,7 @@ fun MainScreen() {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    Toast.makeText(context, R.string.belum_bisa, Toast.LENGTH_SHORT).show()
+                    navController.navigate("form")
                 }
             ) {
                 Icon(
@@ -158,6 +160,6 @@ fun ListItem(kendaraan: Kendaraan, onClick: () -> Unit) {
 @Composable
 fun DialogPreview(){
     Assessment2_MoproTheme  {
-            MainScreen()
+        MainScreen(rememberNavController())
     }
 }

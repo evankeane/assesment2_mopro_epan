@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
 import com.evankeane.assessment2_mopro.ui.theme.screen.MainScreen
 
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Assessment2_MoproTheme {
-               MainScreen()
+               MainScreen(rememberNavController())
             }
         }
     }
