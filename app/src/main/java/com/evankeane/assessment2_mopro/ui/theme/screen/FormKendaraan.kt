@@ -57,6 +57,7 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
     var merk by remember { mutableStateOf("") }
     var warna by remember { mutableStateOf("") }
     var tahun by remember { mutableStateOf("") }
+    var showDialog by remember{ mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         if (id==null) return@LaunchedEffect
@@ -105,8 +106,7 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
                     }
                     if(id != null){
                         DeleteAction {
-                            viewModel.delete(id)
-                            navController.popBackStack()
+                            showDialog = true
                         }
                     }
 
@@ -125,6 +125,15 @@ fun FormKendaraan(navController: NavHostController,id:Long?=null) {
 
             modifier = Modifier.padding(padding)
         )
+        if(id!=null && showDialog){
+            DisplayAlertDialog(
+                onDismissRequest = {showDialog = false}
+            ){
+                showDialog = false
+                viewModel.delete(id)
+                navController.popBackStack()
+            }
+        }
     }
 }
 
