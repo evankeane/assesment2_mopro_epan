@@ -55,14 +55,19 @@ import com.evankeane.assessment2_mopro.database.KendaraanDb
 import com.evankeane.assessment2_mopro.model.Kendaraan
 import com.evankeane.assessment2_mopro.navigation.Screen
 import com.evankeane.assessment2_mopro.ui.theme.Assessment2_MoproTheme
+import com.evankeane.assessment2_mopro.util.SettingsDataStore
 import com.evankeane.assessment2_mopro.util.ViewModelFactory
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    var showList by remember { mutableStateOf(true) }
+
+    val dataStore = SettingsDataStore(LocalContext.current)
+    val showList by dataStore.layoutFlow.collectAsState(true)
 
     Scaffold(
         topBar = {
@@ -75,7 +80,11 @@ fun MainScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = {showList = !showList}) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveLayout(!showList)
+                        }
+                    })  {
                         Icon(
                             painter = painterResource(
                                 if(showList) R.drawable.baseline_grid_view_24
